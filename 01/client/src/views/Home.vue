@@ -13,7 +13,12 @@
       <IconBase icon-name="calendar">
         <IconCalendar />
       </IconBase>
-      <IconBase icon-name="calendar" width="24" height="24">
+      <IconBase
+        icon-name="calendar"
+        width="24"
+        height="24"
+        @click="calendarClicked"
+      >
         <IconCalendar />
       </IconBase>
       <IconBase icon-name="calendar" width="36" height="36">
@@ -56,6 +61,10 @@ export default class Home extends Vue {
   async mounted() {
     const response = await fetch("api/values");
     this.values = await response.json();
+  }
+
+  calendarClicked() {
+    this.$emit("Calendar was clicked");
   }
 }
 </script>

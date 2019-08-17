@@ -6,6 +6,7 @@
     viewBox="0 0 18 18"
     :aria-labelledby="iconName"
     role="presentation"
+    @click="handleClick"
   >
     <title :id="iconName" lang="en">{{ iconName }} icon</title>
     <g :fill="iconColor">
@@ -32,6 +33,11 @@ export default {
     iconColor: {
       type: String,
       default: "currentColor"
+    }
+  },
+  methods: {
+    handleClick() {
+      this.$emit("click");
     }
   }
 };
