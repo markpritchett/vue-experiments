@@ -39,6 +39,14 @@
         <IconCalendar />
       </IconBase>
     </section>
+    <input type="text" v-model.trim="value" />
+    <button :disabled="!value" @click="save">Save</button>
+    <div v-if="showSaveSuccessMessage" :style="{ color: 'green' }">
+      Success
+    </div>
+    <div v-if="showSaveFailureMessage" :style="{ color: 'red' }">
+      Failure
+    </div>
   </div>
 </template>
 
@@ -65,6 +73,26 @@ export default class Home extends Vue {
 
   calendarClicked() {
     this.$emit("Calendar was clicked");
+  }
+
+  get value() {
+    return this.$store.state.value;
+  }
+
+  set value(value) {
+    this.$store.commit("setValue", value);
+  }
+
+  save() {
+    this.$store.dispatch("save");
+  }
+
+  get showSaveSuccessMessage() {
+    return this.$store.state.showSaveSuccessMessage;
+  }
+
+  get showSaveFailureMessage() {
+    return this.$store.state.showSaveFailureMessage;
   }
 }
 </script>

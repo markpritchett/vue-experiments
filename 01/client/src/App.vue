@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div v-if="busy" :style="{ color: 'blue' }">LOADING...</div>
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
@@ -27,3 +28,13 @@
   }
 }
 </style>
+<script>
+import store from "./store";
+export default {
+  computed: {
+    busy() {
+      return store.state.busy;
+    }
+  }
+};
+</script>

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,8 +26,18 @@ namespace server.Controllers
 
     // POST api/values
     [HttpPost]
-    public void Post([FromBody] string value)
+    public IActionResult Post([FromBody] string value)
     {
+      System.Threading.Thread.Sleep(2000); // Simulate network latency
+
+      if (value == "foo")
+      {
+        return Ok();
+      }
+      else
+      {
+        return BadRequest();
+      } 
     }
 
     // PUT api/values/5
