@@ -1,7 +1,15 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <div
+      class="alert alert-success"
+      role="alert"
+      v-if="showSaveSuccessMessage"
+    >Saved value successfully</div>
+    <div
+      class="alert alert-danger"
+      role="alert"
+      v-if="showSaveFailureMessage"
+    >There was a problem trying to save the value</div>
     <section>
       <h3>Values from server...</h3>
       <ul>
@@ -13,12 +21,7 @@
       <IconBase icon-name="calendar">
         <IconCalendar />
       </IconBase>
-      <IconBase
-        icon-name="calendar"
-        width="24"
-        height="24"
-        @click="calendarClicked"
-      >
+      <IconBase icon-name="calendar" width="24" height="24" @click="calendarClicked">
         <IconCalendar />
       </IconBase>
       <IconBase icon-name="calendar" width="36" height="36">
@@ -30,22 +33,13 @@
       <IconBase icon-name="calendar" width="60" height="60">
         <IconCalendar />
       </IconBase>
-      <IconBase
-        icon-name="calendar"
-        width="72"
-        height="72"
-        icon-color="#42b983"
-      >
+      <IconBase icon-name="calendar" width="72" height="72" icon-color="#42b983">
         <IconCalendar />
       </IconBase>
     </section>
-    <input type="text" v-model.trim="value" />
-    <button :disabled="!value" @click="save">Save</button>
-    <div v-if="showSaveSuccessMessage" :style="{ color: 'green' }">
-      Success
-    </div>
-    <div v-if="showSaveFailureMessage" :style="{ color: 'red' }">
-      Failure
+    <div class="form-inline">
+      <input type="text" class="form-control" v-model.trim="value" />
+      <button class="btn btn-primary" :disabled="!value || busy" @click="save">Save</button>
     </div>
   </div>
 </template>
@@ -81,6 +75,10 @@ export default class Home extends Vue {
 
   set value(value) {
     this.$store.commit("setValue", value);
+  }
+
+  get busy() {
+    return this.$store.state.busy;
   }
 
   save() {
