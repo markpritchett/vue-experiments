@@ -5,7 +5,7 @@
     <section>
       <h3>Values from server...</h3>
       <ul>
-        <li :key="value" v-for="value in values">{{value}}</li>
+        <li :key="value" v-for="value in values">{{ value }}</li>
       </ul>
     </section>
     <section>
