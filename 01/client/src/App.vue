@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Vue Experiements</a>
+      <router-link class="navbar-brand" to="/">Vue Experiements</router-link>
+
       <button
         class="navbar-toggler"
         type="button"
