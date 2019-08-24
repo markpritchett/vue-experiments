@@ -16,12 +16,16 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <router-link class="nav-link" to="/">Home</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" to="/about">About</router-link>
-          </li>
+          <router-link to="/" v-slot="{ href, navigate, isExactActive }">
+            <li class="nav-item" :class="{active: isExactActive}">
+              <a class="nav-link" :href="href" @click="navigate">Home</a>
+            </li>
+          </router-link>
+          <router-link to="/about" v-slot="{ href, navigate, isExactActive }">
+            <li class="nav-item" :class="{active: isExactActive}">
+              <a class="nav-link" :href="href" @click="navigate">About</a>
+            </li>
+          </router-link>
         </ul>
       </div>
     </nav>
@@ -31,7 +35,7 @@
           <span class="sr-only">Loading...</span>
         </div>
       </div>
-      
+
       <router-view />
     </div>
   </div>
