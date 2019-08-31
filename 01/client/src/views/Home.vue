@@ -41,6 +41,17 @@
       <input type="text" class="form-control" v-model.trim="value" />
       <button class="btn btn-primary" :disabled="!value || busy" @click="save">Save</button>
     </div>
+    <div>
+      <p>
+        Value from environment variable:
+        <strong>{{ someEnvironmentVariable }}</strong>
+      </p>
+      <p>
+        Create a
+        <code>env.local</code> with
+        <code>VUE_APP_SOME_VALUE=Something LOCAL here</code> to see a local override
+      </p>
+    </div>
   </div>
 </template>
 
@@ -92,6 +103,9 @@ export default class Home extends Vue {
   get showSaveFailureMessage() {
     return this.$store.state.showSaveFailureMessage;
   }
+  get someEnvironmentVariable() {
+    return process.env.VUE_APP_SOME_VALUE;
+  }	
 }
 </script>
 <style scoped>

@@ -16,6 +16,7 @@
 - [x] Create `modern` and `legacy` fallback bundles - see [Vue CLI docs](https://cli.vuejs.org/guide/browser-compatibility.html#modern-mode)
 - [x] Testing
     - [x] Unit tests live alongside source files
+- [x] [Environment variables](https://cli.vuejs.org/guide/mode-and-env.html#environment-variables)    
 
 
 
