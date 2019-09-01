@@ -52,6 +52,7 @@
         <code>VUE_APP_SOME_VALUE=Something LOCAL here</code> to see a local override
       </p>
     </div>
+    <pre>{{ flatFoo }}</pre>
   </div>
 </template>
 
@@ -71,6 +72,7 @@ import IconCalendar from "@/components/Icons/IconCalendar.vue";
 })
 export default class Home extends Vue {
   private values: string[] = [];
+  private foo = [1, 2, 3, [4, 5]];
 
   async mounted() {
     const { data } = await axios.get("api/values");
@@ -106,7 +108,11 @@ export default class Home extends Vue {
   }
   get someEnvironmentVariable() {
     return process.env.VUE_APP_SOME_VALUE;
-  }	
+  }
+
+  get flatFoo() {
+    return this.foo.flat();
+  }
 }
 </script>
 <style scoped>

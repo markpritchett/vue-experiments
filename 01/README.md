@@ -16,7 +16,8 @@
 - [x] Create `modern` and `legacy` fallback bundles - see [Vue CLI docs](https://cli.vuejs.org/guide/browser-compatibility.html#modern-mode)
 - [x] Testing
     - [x] Unit tests live alongside source files
-- [x] [Environment variables](https://cli.vuejs.org/guide/mode-and-env.html#environment-variables)    
+- [x] [Environment variables](https://cli.vuejs.org/guide/mode-and-env.html#environment-variables)   
+- [x] Polyfill of `Array.prototype.flat` for IE using [polyfill.io](https://polyfill.io)  
 
 
 
