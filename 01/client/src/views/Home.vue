@@ -57,6 +57,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
+import axios from 'axios';
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 import IconBase from "@/components/Icons/IconBase.vue";
 import IconCalendar from "@/components/Icons/IconCalendar.vue";
@@ -72,8 +73,8 @@ export default class Home extends Vue {
   private values: string[] = [];
 
   async mounted() {
-    const response = await fetch("api/values");
-    this.values = await response.json();
+    const { data } = await axios.get("api/values");
+    this.values = data;
   }
 
   calendarClicked() {

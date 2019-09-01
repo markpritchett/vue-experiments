@@ -6,6 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace server.Controllers
 {
+  public class PostValueRequest
+  {
+    public string Value { get; set; }
+  }
+
   [Route("api/[controller]")]
   [ApiController]
   public class ValuesController : ControllerBase
@@ -26,11 +31,11 @@ namespace server.Controllers
 
     // POST api/values
     [HttpPost]
-    public IActionResult Post([FromBody] string value)
+    public IActionResult Post(PostValueRequest request)
     {
       System.Threading.Thread.Sleep(2000); // Simulate network latency
 
-      if (value == "foo")
+      if (request.Value == "foo")
       {
         return Ok();
       }

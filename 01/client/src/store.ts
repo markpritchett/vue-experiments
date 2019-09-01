@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "axios";
 
 Vue.use(Vuex);
 
@@ -35,20 +36,13 @@ export default new Vuex.Store({
     async save({ commit, state }) {
       commit("resetSaveStatus");
       commit("setBusy");
-      const response = await fetch("api/values", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(state.value)
-      });
-
-      commit("clearBusy");
-
-      if (response.status === 200) {
+      try {
+        await axios.post("api/values", { value: state.value });
         commit("saveSuccessful");
-      } else {
+      } catch {
         commit("saveFailed");
+      } finally {
+        commit("clearBusy");
       }
     }
   }
