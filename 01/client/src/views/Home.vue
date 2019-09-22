@@ -1,15 +1,11 @@
 <template>
   <div class="home">
-    <div
-      class="alert alert-success"
-      role="alert"
-      v-if="showSaveSuccessMessage"
-    >Saved value successfully</div>
-    <div
-      class="alert alert-danger"
-      role="alert"
-      v-if="showSaveFailureMessage"
-    >There was a problem trying to save the value</div>
+    <div class="alert alert-success" role="alert" v-if="showSaveSuccessMessage">
+      Saved value successfully
+    </div>
+    <div class="alert alert-danger" role="alert" v-if="showSaveFailureMessage">
+      There was a problem trying to save the value
+    </div>
     <section>
       <h3>Values from server...</h3>
       <ul>
@@ -21,7 +17,12 @@
       <IconBase icon-name="calendar">
         <IconCalendar />
       </IconBase>
-      <IconBase icon-name="calendar" width="24" height="24" @click="calendarClicked">
+      <IconBase
+        icon-name="calendar"
+        width="24"
+        height="24"
+        @click="calendarClicked"
+      >
         <IconCalendar />
       </IconBase>
       <IconBase icon-name="calendar" width="36" height="36">
@@ -33,13 +34,20 @@
       <IconBase icon-name="calendar" width="60" height="60">
         <IconCalendar />
       </IconBase>
-      <IconBase icon-name="calendar" width="72" height="72" icon-color="#42b983">
+      <IconBase
+        icon-name="calendar"
+        width="72"
+        height="72"
+        icon-color="#42b983"
+      >
         <IconCalendar />
       </IconBase>
     </section>
     <div class="form-inline">
       <input type="text" class="form-control" v-model.trim="value" />
-      <button class="btn btn-primary" :disabled="!value || busy" @click="save">Save</button>
+      <button class="btn btn-primary" :disabled="!value || busy" @click="save">
+        Save
+      </button>
     </div>
     <div>
       <p>
@@ -49,7 +57,8 @@
       <p>
         Create a
         <code>env.local</code> with
-        <code>VUE_APP_SOME_VALUE=Something LOCAL here</code> to see a local override
+        <code>VUE_APP_SOME_VALUE=Something LOCAL here</code> to see a local
+        override
       </p>
     </div>
     <pre>{{ flatFoo }}</pre>
@@ -58,7 +67,7 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import axios from 'axios';
+import axios from "axios";
 import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 import IconBase from "@/components/Icons/IconBase.vue";
 import IconCalendar from "@/components/Icons/IconCalendar.vue";
