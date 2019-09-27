@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -26,6 +26,26 @@ namespace server
     public void ConfigureServices(IServiceCollection services)
     {
       services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+      services.AddAuthentication("Bearer")
+                .AddJwtBearer("Bearer", options =>
+                {
+                  options.Authority = "http://localhost:5000";
+                  options.RequireHttpsMetadata = false;
+
+                  options.Audience = "api1";
+                });
+
+      services.AddCors(options =>
+      {
+        // this defines a CORS policy called "default"
+        options.AddPolicy("default", policy =>
+        {
+          policy.WithOrigins("http://localhost:8080")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+        });
+      });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +62,8 @@ namespace server
       }
 
       app.UseHttpsRedirection();
+      app.UseCors("default");
+      app.UseAuthentication();
       app.UseMvc();
     }
   }

@@ -1,16 +1,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace server.Controllers
 {
+
   public class PostValueRequest
   {
     public string Value { get; set; }
   }
 
+  [Authorize]
   [Route("api/[controller]")]
   [ApiController]
   public class ValuesController : ControllerBase
@@ -19,6 +23,8 @@ namespace server.Controllers
     [HttpGet]
     public ActionResult<IEnumerable<string>> Get()
     {
+      var username = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+
       return new string[] { "value1", "value2" };
     }
 
