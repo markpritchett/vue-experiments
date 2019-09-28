@@ -3,7 +3,7 @@
 ## Goals
 
 - [x] [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0-beta.4/)
-- [x] SPA using [Vue CLI](https://cli.vuejs.org/) with a [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/  web-api/?view=aspnetcore-2.2) API using [Identity Server](https://identityserver4.readthedocs.io/en/latest/) see [01](/01)
+- [x] SPA using [Vue CLI](https://cli.vuejs.org/) with a [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-2.2) API using [Identity Server](https://identityserver4.readthedocs.io/en/latest/) see [01](/01)
   - [x] SPA using [Vue CLI](https://cli.vuejs.org/)
   - [x] Routing using [Vue Router](https://router.vuejs.org/)
       - [X] Add `active` class to menu item for current route
