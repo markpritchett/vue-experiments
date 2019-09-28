@@ -7,6 +7,12 @@
     - [X] Add `active` class to menu item for current route
 - [x] State Management using [Vuex](https://vuex.vuejs.org/)
 - [x] [TypeScript](https://www.typescriptlang.org/)
+- [x] Authentication & Authorization
+  - [x] Authentication using [Identity Server](https://identityserver4.readthedocs.io/en/latest/)
+  - [x] Show / Hide Nav Menu item based on user role
+  - [x] Prevent direct access to route using [Per Route Navigation Guard](https://router.vuejs.org/guide/advanced/navigation-guards.html#per-route-guard)
+  - [x] Secure Web API
+  - [x] Get name identifier claim inside API endpoint 
 - [x] [SVG Icons]  
 *credits*
     - https://github.com/sdras/vue-sample-svg-icons/
