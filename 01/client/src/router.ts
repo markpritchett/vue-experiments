@@ -39,6 +39,13 @@ let router = new Router({
       name: "superAdmin",
       component: () =>
         import(/* webpackChunkName: "superAdmin" */ "./views/SuperAdmin.vue"),
+      beforeEnter: (to, from, next) => {
+        if(!router.app.$store.state.roles.includes('SuperAdminUser')) {
+          router.push({ path: "/" }); 
+        } else {
+          next();
+        }
+      },
       meta: {
         requiresAuth: true
       }
