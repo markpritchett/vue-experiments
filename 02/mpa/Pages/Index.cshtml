@@ -1,18 +1,27 @@
 @page
 @model IndexModel
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment env
 @{
-    ViewData["Title"] = "Home page";
+  ViewData["Title"] = "Home page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+  <h1 class="display-4">Welcome</h1>
+  <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
 
 <div id="app">
 
 </div>
 
+@section HeadScripts {
+  <link href="@env.GetBundlePath("index")" rel="modulepreload" as="script">
+}
+
 @section Scripts {
-  <script src="~/index.js"></script>
+  <script type="module" src="@env.GetBundlePath("index")"></script>
+  @if (env.IsClientSideProductionBuild())
+  {
+    <script src="@env.GetBundlePath("index-legacy")" nomodule></script>
+  }
 }

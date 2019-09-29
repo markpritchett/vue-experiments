@@ -1,5 +1,6 @@
 @page
 @model mpa.Pages.AboutModel
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment env
 @{
   ViewData["Title"] = "About";
 }
@@ -12,6 +13,14 @@
 
 </div>
 
+@section HeadScripts {
+  <link href="@env.GetBundlePath("about")" rel="modulepreload" as="script">
+}
+
 @section Scripts {
-  <script src="~/about.js"></script>
+  <script type="module" src="@env.GetBundlePath("about")"></script>
+  @if (env.IsClientSideProductionBuild())
+  {
+    <script src="@env.GetBundlePath("about-legacy")" nomodule></script>
+  }
 }
