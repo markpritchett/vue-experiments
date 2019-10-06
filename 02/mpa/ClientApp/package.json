@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build:dev": "vue-cli-service build --mode development --watch",
+    "build:watch:app": "vue-cli-service build --mode development --watch",
     "build": "vue-cli-service build --modern",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build:sass": "node-sass ../Styles/main.scss ../wwwroot/css/site.css",
+    "build:watch:sass": "node-sass -w ../Styles/main.scss ../wwwroot/css/site.css",
+    "build:min:sass": "node-sass ../Styles/main.scss ../wwwroot/css/site.min.css --output-style compressed"
   },
   "dependencies": {
     "core-js": "^2.6.5",
@@ -18,6 +21,7 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "node-sass": "^4.12.0",
     "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {

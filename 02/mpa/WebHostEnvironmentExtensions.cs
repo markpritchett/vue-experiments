@@ -24,12 +24,12 @@ namespace mpa
 
         if (!string.IsNullOrEmpty(file))
         {
-          return $"/js/{Path.GetFileName(file)}";
+          return $"/app/js/{Path.GetFileName(file)}";
         }
       }
       else
       {
-        return $"/{name}.js";
+        return $"/app/{name}.js";
       }
 
       return string.Empty;
@@ -37,7 +37,7 @@ namespace mpa
 
     private static string GetProductionJsFilePath(this IWebHostEnvironment webHostEnvironment)
     {
-      return Path.Combine(webHostEnvironment.WebRootPath, "js");
+      return Path.Combine(webHostEnvironment.WebRootPath, "app/js");
     }
   }
 }
