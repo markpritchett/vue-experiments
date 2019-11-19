@@ -58,21 +58,21 @@
   </div>
 </template>
 <script>
-import store from "./store";
-import Oidc from "oidc-client";
-import config from "./config";
-const mgr = new Oidc.UserManager(config);
+import store from './store'
+import Oidc from 'oidc-client'
+import config from './config'
+const mgr = new Oidc.UserManager(config)
 
 export default {
   methods: {
-    logout() {
-      mgr.signoutRedirect();
+    logout () {
+      mgr.signoutRedirect()
     }
   },
   computed: {
-    busy() {
-      return store.state.busy;
+    busy () {
+      return store.state.busy
     }
   }
-};
+}
 </script>

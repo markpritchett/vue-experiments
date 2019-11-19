@@ -6,7 +6,6 @@
 - [x] Routing using [Vue Router](https://router.vuejs.org/)
     - [X] Add `active` class to menu item for current route
 - [x] State Management using [Vuex](https://vuex.vuejs.org/)
-- [x] [TypeScript](https://www.typescriptlang.org/)
 - [x] Authentication & Authorization
   - [x] Authentication using [Identity Server](https://identityserver4.readthedocs.io/en/latest/)
   - [x] Show / Hide Nav Menu item based on user role

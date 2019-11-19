@@ -20,7 +20,7 @@ export default {
   props: {
     iconName: {
       type: String,
-      default: "box"
+      default: 'box'
     },
     width: {
       type: [Number, String],
@@ -32,13 +32,13 @@ export default {
     },
     iconColor: {
       type: String,
-      default: "currentColor"
+      default: 'currentColor'
     }
   },
   methods: {
-    handleClick() {
-      this.$emit("click");
+    handleClick () {
+      this.$emit('click')
     }
   }
-};
+}
 </script>

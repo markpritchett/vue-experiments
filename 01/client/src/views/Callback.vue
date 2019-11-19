@@ -2,42 +2,42 @@
   <h5>Signing in...</h5>
 </template>
 <script>
-import Oidc from "oidc-client";
-import axios from "axios";
+import Oidc from 'oidc-client'
+import axios from 'axios'
 
 export default {
-  async created() {
+  async created () {
     try {
       const result = await new Oidc.UserManager({
-        response_mode: "query"
-      }).signinRedirectCallback();
+        response_mode: 'query'
+      }).signinRedirectCallback()
 
-      this.$store.commit("setAuthenticated", true);
-      this.$store.commit("setUser", result.profile);
+      this.$store.commit('setAuthenticated', true)
+      this.$store.commit('setUser', result.profile)
 
-      console.log(result.profile);
+      console.log(result.profile)
 
-      const requestedPath = localStorage.getItem("requestPath");
+      const requestedPath = localStorage.getItem('requestPath')
 
       if (requestedPath) {
-        this.$router.push({ path: requestedPath });
-        localStorage.removeItem("requestedPath");
+        this.$router.push({ path: requestedPath })
+        localStorage.removeItem('requestedPath')
       } else {
-        this.$router.push({ path: "/" });
+        this.$router.push({ path: '/' })
       }
 
       axios.interceptors.request.use(
         config => {
-          config.headers.Authorization = `Bearer ${result.access_token}`;
-          return config;
+          config.headers.Authorization = `Bearer ${result.access_token}`
+          return config
         },
-        function(error) {
-          return Promise.reject(error);
+        function (error) {
+          return Promise.reject(error)
         }
-      );
+      )
     } catch (ex) {
-      this.$store.commit("setAuthenticated", false);
+      this.$store.commit('setAuthenticated', false)
     }
   }
-};
+}
 </script>
