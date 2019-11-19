@@ -9,7 +9,7 @@ import config from '@/config'
 const mgr = new Oidc.UserManager(config)
 Vue.use(Router)
 
-let router = new Router({
+const router = new Router({
   mode: 'hash',
   base: process.env.BASE_URL,
   routes: [
