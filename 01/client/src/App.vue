@@ -59,9 +59,9 @@
 </template>
 <script>
 import store from './store'
-import Oidc from 'oidc-client'
+import { UserManager } from 'oidc-client'
 import config from './config'
-const mgr = new Oidc.UserManager(config)
+const mgr = new UserManager(config)
 
 export default {
   methods: {

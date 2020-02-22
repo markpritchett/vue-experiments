@@ -3,10 +3,10 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Callback from "./views/Callback.vue";
 import Unauthorized from "./views/Unauthorized.vue";
-import Oidc from "oidc-client";
+import { UserManager } from 'oidc-client'
 import config from "./config";
 
-const mgr = new Oidc.UserManager(config);
+const mgr = new UserManager(config)
 Vue.use(Router);
 
 let router = new Router({

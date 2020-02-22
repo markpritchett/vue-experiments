@@ -2,20 +2,18 @@
   <h5>Signing in...</h5>
 </template>
 <script>
-import Oidc from 'oidc-client'
+import { UserManager } from 'oidc-client'
 import axios from 'axios'
 
 export default {
   async created () {
     try {
-      const result = await new Oidc.UserManager({
+      const result = await new UserManager({
         response_mode: 'query'
       }).signinRedirectCallback()
 
       this.$store.commit('setAuthenticated', true)
       this.$store.commit('setUser', result.profile)
-
-      console.log(result.profile)
 
       const requestedPath = localStorage.getItem('requestPath')
 
