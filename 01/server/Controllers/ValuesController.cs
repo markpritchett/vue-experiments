@@ -25,7 +25,7 @@ namespace server.Controllers
     {
       var username = User.Claims.Single(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
 
-      return new string[] { "value1", "value2" };
+      return new string[] { "value1", "value2", username };
     }
 
     // GET api/values/5

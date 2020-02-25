@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 
 namespace server
 {
@@ -25,8 +25,6 @@ namespace server
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
       services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
@@ -36,35 +34,28 @@ namespace server
                   options.Audience = "api1";
                 });
 
-      services.AddCors(options =>
-      {
-        // this defines a CORS policy called "default"
-        options.AddPolicy("default", policy =>
-        {
-          policy.WithOrigins("http://localhost:8080")
-              .AllowAnyHeader()
-              .AllowAnyMethod();
-        });
-      });
+      services.AddControllers();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-    public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
       if (env.IsDevelopment())
       {
         app.UseDeveloperExceptionPage();
       }
-      else
-      {
-        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-        app.UseHsts();
-      }
 
       app.UseHttpsRedirection();
-      app.UseCors("default");
+
+      app.UseRouting();
+
       app.UseAuthentication();
-      app.UseMvc();
+      app.UseAuthorization();
+
+      app.UseEndpoints(endpoints =>
+      {
+        endpoints.MapControllers();
+      });
     }
   }
 }
