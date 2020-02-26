@@ -9,26 +9,23 @@ namespace identity
 {
     public static class Config
     {
-        public static IEnumerable<IdentityResource> GetIdentityResources()
-        {
-            return new IdentityResource[]
+        public static IEnumerable<IdentityResource> Ids =>
+            new IdentityResource[]
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
             };
-        }
 
-        public static IEnumerable<ApiResource> GetApis()
-        {
-            return new ApiResource[]
+
+        public static IEnumerable<ApiResource> Apis =>
+            new ApiResource[]
             {
                 new ApiResource("api1", "My API #1")
             };
-        }
 
-        public static IEnumerable<Client> GetClients()
-        {
-            return new[]
+
+        public static IEnumerable<Client> Clients =>
+            new Client[]
             {
                 // client credentials flow client
                 new Client
@@ -42,18 +39,19 @@ namespace identity
                     AllowedScopes = { "api1" }
                 },
 
-                // MVC client using hybrid flow
+                // MVC client using code flow + pkce
                 new Client
                 {
                     ClientId = "mvc",
                     ClientName = "MVC Client",
 
-                    AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
+                    AllowedGrantTypes = GrantTypes.CodeAndClientCredentials,
+                    RequirePkce = true,
                     ClientSecrets = { new Secret("49C1A7E1-0C79-4A89-A3D6-A37998FB86B0".Sha256()) },
 
-                    RedirectUris = { "http://localhost:5001/signin-oidc" },
-                    FrontChannelLogoutUri = "http://localhost:5001/signout-oidc",
-                    PostLogoutRedirectUris = { "http://localhost:5001/signout-callback-oidc" },
+                    RedirectUris = { "http://localhost:5003/signin-oidc" },
+                    FrontChannelLogoutUri = "http://localhost:5003/signout-oidc",
+                    PostLogoutRedirectUris = { "http://localhost:5003/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "api1" }
@@ -84,6 +82,5 @@ namespace identity
                     AllowedScopes = { "openid", "profile", "api1" }
                 }
             };
-        }
     }
 }
