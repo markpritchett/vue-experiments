@@ -2,12 +2,13 @@
 
 describe('My First Test', () => {
   it('Visits the app root url', () => {
+    cy.server()           // enable response stubbing
+    cy.route({
+      method: 'GET',      // Route all GET requests
+      url: '/api/values',    // that have a URL that matches '/users/*'
+      response: ['foo', 'bar']        // and force the response to be: []
+    })
     cy.visit('/')
-    cy.get('#Username').type('alice')
-    cy.get('#Password').type('alice')
-    cy.get('#login').click()
-    cy.get('#giveAppAccess').then(el => el.click())
-    // cy.contains('h1', 'Welcome to Your Vue.js App')
-    cy.get('nav').contains('Alice Smith')
+    cy.get('.server-values').contains('foo')
   })
 })

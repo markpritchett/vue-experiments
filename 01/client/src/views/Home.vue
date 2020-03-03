@@ -10,7 +10,7 @@
       role="alert"
       v-if="showSaveFailureMessage"
     >There was a problem trying to save the value</div>
-    <section>
+    <section class="server-values">
       <h3>Values from server...</h3>
       <ul>
         <li :key="value" v-for="value in values">{{ value }}</li>
