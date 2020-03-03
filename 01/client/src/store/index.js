@@ -1,19 +1,28 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import config from '@/config'
 
 Vue.use(Vuex)
 
+const state = {
+  authenticated: false,
+  userFullName: null,
+  roles: [],
+  busy: false,
+  value: null,
+  showSaveSuccessMessage: false,
+  showSaveFailureMessage: false
+}
+
+if (config.isolatedMode) {
+  state.authenticated = true
+  state.userFullName = config.testUserFullName
+  state.roles.push(...config.testUserRoles)
+}
+
 export default new Vuex.Store({
-  state: {
-    authenticated: false,
-    userFullName: null,
-    roles: [],
-    busy: false,
-    value: null,
-    showSaveSuccessMessage: false,
-    showSaveFailureMessage: false
-  },
+  state,
   mutations: {
     setBusy (state) {
       state.busy = true
